@@ -1,0 +1,60 @@
+.container {
+  margin-top: 30px;
+  margin-inline: auto;
+  width: 600px;
+  height: auto;
+  border-style: solid;
+  background-color: rgb(191, 222, 240);
+}
+
+.title {
+  text-align: center;
+}
+
+.form {
+  padding-inline: 50px;
+}
+
+.form-input {
+  width: 300px;
+}
+
+.btn-wrapper {
+  text-align: center;
+}
+
+.btn-pesan {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgb(112, 177, 231);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-pesan:hover {
+  background-color: #88a4bf;
+}
+
+.btn-hitung {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgb(112, 177, 231);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-hitung:hover {
+  background-color: #88a4bf;
+}
+
+.form-label {
+  width: 250px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#hasil {
+  padding-inline: 50px;
+}

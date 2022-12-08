@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amel Travel</title>
+    <link rel="stylesheet" href="asset/css/style.css" />
+  </head>
+  <body>
+    <img src="" alt="" />
+    <div class="container">
+      <h2 class="title">Amel Travel</h2>
+      <form class="form">
+        <table>
+          <tr>
+            <td class="form-label">
+              <label for="nama">Nama pemesan tiket </label>
+            </td>
+            <td>
+              <input type="text" id="nama" class="form-input" />
+            </td>
+          </tr>
+          <tr>
+            <td class="form-label">
+              <label for="nama">Nomor Identitas </label>
+            </td>
+            <td>
+              <input type="number" id="nomor_identitas" class="form-input" />
+            </td>
+          </tr>
+          <tr>
+            <td class="form-label">
+              <label for="nomor_hp">Nomor HP</label>
+            </td>
+            <td>
+              <input type="text" id="nomor_hp" class="form-input" />
+            </td>
+          </tr>
+          <tr>
+            <td class="form-label">
+              <label for="tempat_wisata">Tempat Wisata</label>
+            </td>
+            <td>
+              <select id="tempat_wisata" class="form-input">
+                <option value="15000">Kolam renang raider- Rp 15.000</option>
+                <option value="5000">Pemandian mata ie 1 - Rp 5.000</option>
+                <option value="35000">Waterpark - Rp 35.000</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="form-label">
+              <label for="tanggal">Tanggal Kunjungan</label>
+            </td>
+            <td>
+              <input type="date" id="tanggal" class="form-input" />
+            </td>
+          </tr>
+          <tr>
+            <td class="form-label">
+              <label for="Dewasa">Pengunjung Dewasa</label>
+            </td>
+            <td>
+              <input type="number" id="Dewasa" min="0" class="form-input" />
+            </td>
+          </tr>
+          <tr>
+            <td class="form-label">
+              <label for="anak-anak">Pengunjung Anak-anak (Usia di bawah 12 tahun gratis)</label>
+            </td>
+            <td>
+              <input type="number" id="anak-anak" min="0" class="form-input" />
+            </td>
+          </tr>
+          <tr>
+            <td class="form-label">
+              <label>Harga Tiket</label>
+            </td>
+            <td>
+              <div id="harga_tiket">Rp 0</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="form-label">
+              <label>Total Bayar</label>
+            </td>
+            <td>
+              <div id="harga_bayar">Rp 0</div>
+            </td>
+          </tr>
+        </table>
+        <input type="radio" /> Saya telah membaca dan setuju dengan persyaratan yang telah dibuat
+
+        <div class="btn-wrapper">
+          <button type="button" class="btn-pesan" id="btn-pesan">Pesan Tiket</button>
+        </div>
+      </form>
+
+      <div id="hasil"></div>
+
+      <p style="text-align: center">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/QxEYPA-vpn8"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; 
+            encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilYCTtRc53GTIyI4n04OzEolZGxgQMeeXQQ&usqp=CAU" />
+      </p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script>
+      let data = [];
+      data['nama'] = '';
+      data['nomor_hp'] = '';
+      data['tempat_wisata'] = '';
+      data['harga_tiket'] = $('#tempat_wisata').val();
+      data['tanggal'] = '';
+      data['jumlah_Pengunjung'] = 0;
+      data['harga_bayar'] = 0;
+
+      $('#harga_tiket').text(`Rp ${data['harga_tiket']}`);
+
+      $('#tempat_wisata').on('change', function () {
+        data['harga_tiket'] = $('#tempat_wisata').val();
+        data['tempat_wisata'] = $('#tempat_wisata option:selected').text().split(' - ')[0];
+        $('#harga_tiket').text(`Rp ${data['harga_tiket']}`);
+      });
+
+      $('#Dewasa').on('input', function () {
+        data['jumlah_Dewasa'] = $('#Dewasa').val();
+        data['harga_bayar'] = data['jumlah_Dewasa'] * data['harga_tiket'];
+        $('#harga_bayar').text(`Rp ${data['harga_bayar']}`);
+      });
+
+      $('#anak-anak').on('input', function () {
+        data['jumlah_anak'] = $('#anak-anak').val();
+        data['harga_bayar'] = data['harga_bayar'] + data['jumlah_anak'] * data['harga_tiket'] * 0.5;
+        $('#harga_bayar').text(`Rp ${data['harga_bayar']}`);
+      });
+
+      $('#btn-pesan').on('click', function () {
+        data['nama'] = $('#nama').val();
+        data['nomor_identitas'] = $('#nomor_identitas').val();
+        data['nomor_hp'] = $('#nomor_hp').val();
+        data['jumlah_Pengunjung'] = $('#Pengunjung').val();
+
+        $('#hasil').html(`
+        <table>
+                <tr>
+                    <td>Nama Pemesan</td>
+                    <td>: ${data['nama']}</td>
+                </tr>
+                <tr>
+                    <td>Nomor Identitas</td>
+                    <td>: ${data['nomor_identitas']}</td>
+                </tr>
+                <tr>
+                    <td>No HP</td>
+                    <td>: ${data['nomor_hp']}</td>
+                </tr>
+                <tr>
+                    <td>Tempat Wisata</td>
+                    <td>: ${data['tempat_wisata']}</td>
+                </tr>
+                <tr>
+                    <td>Pengujung Dewasa </td>
+                    <td>: ${data['jumlah_Dewasa']} Orang</td>
+                </tr>
+                <tr>
+                    <td>Pengujung Anak-anak </td>
+                    <td>: ${data['jumlah_anak']} Orang</td>
+                </tr>
+                <tr>
+                    <td>Harga Tiket</td>
+                    <td>: Rp ${data['harga_tiket']}</td>
+                </tr>
+                <tr>
+                    <td>Total Bayar</td>
+                    <td>: Rp ${data['harga_bayar']}</td>
+                </tr>
+            </table>
+        `);
+      });
+    </script>
+  </body>
+</html>
